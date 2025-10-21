@@ -4,7 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/fb-page-analyzer/',
+  base: '/fb-weekly-analyzer/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -20,20 +20,20 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           ui: ['lucide-react', '@radix-ui/react-tabs', '@radix-ui/react-select'],
-          utils: ['papaparse', 'xlsx', 'clsx', 'tailwind-merge']
-        }
-      }
-    }
+          utils: ['papaparse', 'xlsx', 'clsx', 'tailwind-merge'],
+        },
+      },
+    },
   },
   server: {
     port: 5173,
     strictPort: true,
     open: true,
-    host: true
+    host: true,
   },
   preview: {
     port: 4173,
     strictPort: true,
-    open: true
-  }
+    open: true,
+  },
 });
