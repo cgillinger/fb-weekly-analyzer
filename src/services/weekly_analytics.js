@@ -66,12 +66,9 @@ export function calculateWeekToWeekTrend(weeklyDataArray) {
     return [];
   }
   
-  // Sortera efter period (år och vecka)
+  // Sortera efter startDate för korrekt ordning över årsskifte
   const sorted = [...weeklyDataArray].sort((a, b) => {
-    if (a.period.year !== b.period.year) {
-      return a.period.year - b.period.year;
-    }
-    return a.period.week - b.period.week;
+    return a.period.startDate.localeCompare(b.period.startDate);
   });
   
   const trends = [];
@@ -235,12 +232,9 @@ export function findConsistentGrowth(dataByPage, metric = 'engagements', minWeek
       continue; // Behöver minst minWeeks + 1 datapunkter
     }
     
-    // Sortera efter period
+    // Sortera efter startDate för korrekt ordning över årsskifte
     const sorted = [...pageData].sort((a, b) => {
-      if (a.period.year !== b.period.year) {
-        return a.period.year - b.period.year;
-      }
-      return a.period.week - b.period.week;
+      return a.period.startDate.localeCompare(b.period.startDate);
     });
     
     // Räkna konsekutiva veckor med tillväxt
