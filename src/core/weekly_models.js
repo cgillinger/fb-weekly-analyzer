@@ -229,10 +229,9 @@ export class WeeklyDataset {
       }
     });
     
-    // Sort by year and week
+    // Sort by startDate to handle year-boundary weeks correctly
     return Array.from(periodsMap.values()).sort((a, b) => {
-      if (a.year !== b.year) return a.year - b.year;
-      return a.week - b.week;
+      return a.startDate.localeCompare(b.startDate);
     });
   }
 

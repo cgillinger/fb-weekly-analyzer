@@ -24,10 +24,9 @@ function App() {
       }
     });
     
-    // Sortera perioder
+    // Sortera perioder efter startDate för korrekt ordning över årsskifte
     mergedPeriods.sort((a, b) => {
-      if (a.year !== b.year) return a.year - b.year;
-      return a.week - b.week;
+      return a.startDate.localeCompare(b.startDate);
     });
     
     setUploadedPeriods(mergedPeriods);

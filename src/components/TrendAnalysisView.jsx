@@ -61,8 +61,7 @@ const TrendAnalysisView = ({ uploadedPeriods }) => {
       displayString: `Vecka ${period.week} (${period.startDate})`,
       monthKey: `${period.year}-${String(period.month).padStart(2, '0')}`
     })).sort((a, b) => {
-      if (a.year !== b.year) return a.year - b.year;
-      return a.week - b.week;
+      return a.startDate.localeCompare(b.startDate);
     });
   }, [uploadedPeriods]);
 
@@ -129,6 +128,7 @@ const TrendAnalysisView = ({ uploadedPeriods }) => {
           period: `Vecka ${period.week}`,
           week: period.week,
           year: period.year,
+          startDate: period.startDate,
           pageId,
           pageName: weeklyData.page.pageName,
           value,
@@ -158,8 +158,7 @@ const TrendAnalysisView = ({ uploadedPeriods }) => {
 
     groupedByPage.forEach(line => {
       line.points.sort((a, b) => {
-        if (a.year !== b.year) return a.year - b.year;
-        return a.week - b.week;
+        return a.startDate.localeCompare(b.startDate);
       });
     });
 

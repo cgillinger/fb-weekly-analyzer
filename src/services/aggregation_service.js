@@ -206,12 +206,9 @@ export function aggregatePageTimeseries(weeklyDataArray) {
     return null;
   }
   
-  // Sortera efter period
+  // Sortera efter startDate för korrekt ordning över årsskifte
   const sorted = [...weeklyDataArray].sort((a, b) => {
-    if (a.period.year !== b.period.year) {
-      return a.period.year - b.period.year;
-    }
-    return a.period.week - b.period.week;
+    return a.period.startDate.localeCompare(b.period.startDate);
   });
   
   const timeseries = sorted.map(data => ({
